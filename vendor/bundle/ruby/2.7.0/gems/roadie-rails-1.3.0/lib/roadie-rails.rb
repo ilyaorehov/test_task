@@ -1,1 +1,0 @@
-require 'roadie/rails'
