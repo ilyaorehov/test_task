@@ -5,11 +5,11 @@ networks:
     driver: bridge
     ipam:
      config:
-       - subnet: 192.168.15.0/24
-         gateway: 192.168.15.1
+       - subnet: 192.168.2.0/24
+         gateway: 192.168.2.1
          aux_addresses:
-          redminedb: 192.168.15.2
-          web: 192.168.15.3      
+          redminedb: 192.168.2.2
+          web: 192.168.2.3      
       
 services:
   redminedb:
@@ -22,7 +22,13 @@ services:
       - ./db/data/:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test
+      POSTGRES_PASSWORD: 1234  
     ports:
       - 5432:5432
-
+  web:
+    container_name: testredmine
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redminedb

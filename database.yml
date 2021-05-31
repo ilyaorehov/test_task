@@ -12,13 +12,14 @@
 production:
   adapter: postgresql
   database: redmine
-  host: 192.168.15.2
+  host: 192.168.2.2
   username: redmineuser
   password: "mysecretpassword" 
-  
+
+test:  
   adapter: postgresql
   database: redmine
-  host: 192.168.15.2
+  host: 192.168.2.2
   username: redmineuser
   password: "mysecretpassword" 
 
