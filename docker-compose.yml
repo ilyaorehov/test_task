@@ -1,0 +1,28 @@
+version: "2"  
+
+networks:
+  bridge:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 192.168.15.0/24
+         gateway: 192.168.15.1
+         aux_addresses:
+          redminedb: 192.168.15.2
+          web: 192.168.15.3      
+      
+services:
+  redminedb:
+    container_name: testpsql
+    restart: always
+    image: psql
+    build:
+      context: ./db
+    volumes:
+      - ./db/data/:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+    ports:
+      - 5432:5432
+
